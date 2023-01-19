@@ -8,6 +8,9 @@ import CodeView from '../views/CodeView';
 import ResultsView from '../views/ResultView';
 import $ from '../themes/constants';
 import { useCallback } from 'react';
+import prettyLight from '../assets/pretty.svg'
+import prettyDark from '../assets/pretty-dark.svg'
+import {js_beautify} from 'js-beautify';
 
 const Main = () => {
   const [codeString, setCodeString] = useState('// Start writing your code...');
@@ -21,6 +24,13 @@ const Main = () => {
       return $.LIGHT;
     });
   }, []);
+
+  const onPrettify = useCallback(() => {
+    setCodeString(prev => {
+      return js_beautify(prev, { preserve_newlines: false});
+    })
+    
+  },[]);
 
   const btnTitle = theme === $.DARK ? 'Switch to light theme' : 'Switch to dark theme';
 
@@ -40,13 +50,23 @@ const Main = () => {
         </div>
         <div className="icon-btns flex items-center">
           <button
-            title={btnTitle}
+            title={"Prettify your code"}
             className="m-0 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            type="button"
+            onClick={onPrettify}
+          >
+            <img src={theme === $.DARK ? prettyLight : prettyDark} className="dark-icon h-5" />
+          </button>
+
+          <button
+            title={btnTitle}
+            className="m-0 ml-2 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={toggleTheme}
           >
-            <img src={theme === $.DARK ? light : dark} className="dark-icon h-4" />
+            <img src={theme === $.DARK ? light : dark} className="dark-icon h-5" />
           </button>
+
         </div>
       </div>
 
