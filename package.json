@@ -11,7 +11,7 @@
     "lint": "eslint --fix src",
     "format": "prettier --write src",
     "predeploy":"npm run build",
-    "deploy":"gh-pages -d build"
+    "deploy":"gh-pages -d dist"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
