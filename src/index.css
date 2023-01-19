@@ -76,3 +76,10 @@ body {
 .error-ctr > * {
   border-bottom: 0;
 }
+
+
+.dark .editor-main {
+  background-color: #171717;
+  color: white;
+}
+

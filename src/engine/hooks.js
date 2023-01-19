@@ -62,5 +62,6 @@ export const useEditor = () => {
     monaco.editor.bracketPairColorization = true;
 
     monaco.editor.scrollBeyondLastLine = false;
+
   }
 };
