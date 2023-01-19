@@ -11,12 +11,32 @@ import { useCallback } from 'react';
 import prettyLight from '../assets/pretty.svg'
 import prettyDark from '../assets/pretty-dark.svg'
 import {js_beautify} from 'js-beautify';
+import Storage from '../engine/storage';
+import { useEffect } from 'react';
+import _debounce from 'lodash/debounce';
+
+
+const storage = new Storage({type: localStorage, async: false});
 
 const Main = () => {
   const [codeString, setCodeString] = useState('// Start writing your code...');
   const [theme, setTheme] = useState($.DARK);
+  const [saved,setSaved] = useState(false);
 
   useEditor();
+
+  const debounceFn = useCallback(_debounce(handleDebounceFn, 3000), []);
+
+  function handleDebounceFn(val) {
+    storage.set($.CODE,val);
+    setSaved(true);
+  }
+
+
+  useEffect(()=>{
+    const codeStr = storage.get($.CODE);
+    setCodeString(codeStr);
+  },[]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
@@ -30,6 +50,12 @@ const Main = () => {
       return js_beautify(prev, { preserve_newlines: false});
     })
     
+  },[]);
+
+  const onEditorChange = useCallback(val => {
+    setSaved(false);
+    setCodeString(val);
+    debounceFn(val);
   },[]);
 
   const btnTitle = theme === $.DARK ? 'Switch to light theme' : 'Switch to dark theme';
@@ -49,6 +75,7 @@ const Main = () => {
           </sub>
         </div>
         <div className="icon-btns flex items-center">
+          {saved && <div className="text-xs mr-4 text-neutral-200">Changes saved !</div>}
           <button
             title={"Prettify your code"}
             className="m-0 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
@@ -71,7 +98,7 @@ const Main = () => {
       </div>
 
       <div className="work-space flex w-full flex-1 items-center justify-between ">
-        <CodeView onChange={setCodeString} value={codeString} theme={theme} />
+        <CodeView onChange={onEditorChange} value={codeString} theme={theme} />
         <ResultsView code={codeString} theme={theme} />
       </div>
     </div>
