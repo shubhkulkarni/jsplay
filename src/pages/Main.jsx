@@ -50,7 +50,7 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="work-space flex w-full flex-1 flex-col items-center justify-between sm:flex-row">
+      <div className="work-space flex w-full flex-1 items-center justify-between ">
         <CodeView onChange={setCodeString} value={codeString} theme={theme} />
         <ResultsView code={codeString} theme={theme} />
       </div>
