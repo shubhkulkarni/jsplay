@@ -7,7 +7,7 @@ export const themeData = {
         "token": ""
       },
       {
-        "foreground": "ad2ea4",
+        "foreground": "05d8a3",
         "fontStyle": "italic",
         "token": "comment"
       },

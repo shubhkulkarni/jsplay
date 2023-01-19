@@ -8,3 +8,69 @@
     box-sizing: border-box;
 }
 
+.bg-text{
+    color: gray;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 75%;
+    user-select:none;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    /* height: 5%; */
+}
+
+.work-space{
+    height: 90%;
+}
+
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .dark * {
+    scrollbar-width: thin;
+    scrollbar-color: #ababab #e3e3e3;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .dark *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .dark *::-webkit-scrollbar-track {
+    background: #2c2c2c;
+  }
+
+  .dark *::-webkit-scrollbar-thumb {
+    background-color: #838282;
+    border-radius: 14px;
+    border: 0px solid #ffffff;
+  }
+
+  .light * {
+    scrollbar-width: thin;
+    scrollbar-color: #cfcfcf #e3e3e3;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .light *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .light *::-webkit-scrollbar-track {
+    background: #dbdbdb;
+  }
+
+  .light *::-webkit-scrollbar-thumb {
+    background-color: #919191;
+    border-radius: 14px;
+    border: 0px solid #ffffff;
+  }
+
+  .warnings-ctr > * , .error-ctr > * {
+    border-bottom: 0;
+  }
