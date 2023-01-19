@@ -1,5 +1,4 @@
 import { useMonaco } from '@monaco-editor/react';
-import { useEffect } from 'react';
 import { themeData } from '../themes/dark1';
 
 export const useLog = function () {
@@ -53,6 +52,7 @@ export const useLog = function () {
   return { logMessages, errors, warnings };
 };
 
+
 export const useEditor = () => {
   const monaco = useMonaco();
 
@@ -60,7 +60,6 @@ export const useEditor = () => {
     monaco.editor.defineTheme('dark', themeData);
     //    monaco.automaticLayout = true;
     monaco.editor.bracketPairColorization = true;
-
     monaco.editor.scrollBeyondLastLine = false;
 
   }

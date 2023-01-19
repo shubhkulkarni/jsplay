@@ -16,7 +16,7 @@ export const renderMsg = (msg, theme) => {
       if (i === document)
         return (
           <pre
-            key={i}
+            
             className="border-b border-neutral-300 border-opacity-80 py-1.5 dark:border-neutral-700"
           >
             {JSON.stringify(i, null, 2)}
@@ -25,7 +25,7 @@ export const renderMsg = (msg, theme) => {
       if (i === window)
         return (
           <div
-            key={i}
+            
             className="my-2 rounded bg-blue-100 p-1 px-2 text-blue-800 dark:bg-blue-800 dark:bg-opacity-50 dark:text-lime-400"
           >
             Please use <b>browser console</b> for viewing <b>window</b> object
@@ -34,7 +34,7 @@ export const renderMsg = (msg, theme) => {
       if (isCyclic(i))
         return (
           <div
-            key={i}
+            
             className="my-2 rounded bg-blue-100 p-1 px-2 text-blue-800 dark:bg-blue-800 dark:bg-opacity-50 dark:text-lime-400"
           >
             Please use <b>browser console</b>. This object has cyclic references
@@ -44,7 +44,7 @@ export const renderMsg = (msg, theme) => {
       if (typeof i === 'object') {
         return (
           <div
-            key={i}
+            
             className="border-b border-neutral-300 border-opacity-80 py-1.5 dark:border-neutral-700"
           >
             <ReactJson
@@ -63,7 +63,7 @@ export const renderMsg = (msg, theme) => {
       if (typeof i === 'number')
         return (
           <div
-            key={i}
+            
             className="border-b border-neutral-300 border-opacity-80 py-1.5 text-orange-700 dark:border-neutral-700 dark:text-orange-500"
           >
             {Number(i)}
@@ -72,7 +72,7 @@ export const renderMsg = (msg, theme) => {
       if (typeof i === 'boolean')
         return (
           <div
-            key={i}
+            
             className="border-b border-neutral-300 border-opacity-80 py-1.5 text-blue-700 dark:border-neutral-700 dark:text-blue-500"
           >
             {String(i)}
@@ -80,7 +80,7 @@ export const renderMsg = (msg, theme) => {
         );
       return (
         <div
-          key={i}
+          
           className="border-b border-neutral-300 border-opacity-80 py-1.5 dark:border-neutral-700"
         >
           {i}
@@ -89,7 +89,7 @@ export const renderMsg = (msg, theme) => {
     });
   } catch (err) {
     return (
-      <div key={i} className="error rounded bg-red-800 bg-opacity-50 p-1 px-2 text-white">
+      <div  className="error rounded bg-red-800 bg-opacity-50 p-1 px-2 text-white">
         {String(err)}
       </div>
     );
