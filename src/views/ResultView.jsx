@@ -40,7 +40,7 @@ const ResultsView = ({ code, theme }) => {
             {msg.length
               ? renderMsg(msg, theme)
               : showConsoleName && (
-                  <div className="text-neutral-500 dark:text-neutral-300">
+                  <div className="output-text-primary text-neutral-500 dark:text-neutral-300">
                     <span className="font-bold text-lime-600 dark:text-lime-400">{`>_ `}</span>{' '}
                     Console Output
                   </div>
