@@ -57,7 +57,7 @@ export const renderMsg = (msg, theme) => {
 
       if(i instanceof Promise && typeof i.then === 'function'){
         return <div className={classes.promise}>
-          <i className='font-semibold'>{String(i)}</i> - use browser console for more
+          <i className='font-semibold'>{String(i)}</i> - use browser console for in-depth info
       </div>
       }
 
