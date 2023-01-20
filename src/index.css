@@ -47,7 +47,7 @@ body {
 }
 
 .dark *::-webkit-scrollbar-thumb {
-  background-color: #838282;
+  background-color: #535252;
   border-radius: 14px;
   border: 0px solid #ffffff;
 }
