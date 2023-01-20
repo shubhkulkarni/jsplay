@@ -41,6 +41,23 @@ export const renderMsg = (msg, theme) => {
           </div>
         );
 
+      if(i === null) {
+          return <div
+          className="border-b border-neutral-300 border-opacity-80 py-1.5 text-cyan-600 dark:border-neutral-700 dark:text-cyan-300"
+        >
+          {String(i)}
+        </div>
+      }
+
+      if(i === undefined) {
+        return <div
+        className="border-b border-neutral-300 border-opacity-80 py-1.5 text-purple-600 dark:border-neutral-700 dark:text-purple-400"
+      >
+        {String(i)}
+      </div>
+
+      }
+
       if (typeof i === 'object') {
         return (
           <div
@@ -73,7 +90,7 @@ export const renderMsg = (msg, theme) => {
         return (
           <div
             
-            className="border-b border-neutral-300 border-opacity-80 py-1.5 text-blue-700 dark:border-neutral-700 dark:text-blue-500"
+            className="border-b border-neutral-300 border-opacity-80 py-1.5 text-blue-700 dark:border-neutral-700 dark:text-blue-400"
           >
             {String(i)}
           </div>
