@@ -71,7 +71,7 @@ const Main = () => {
           <span className="mr-1 rounded bg-yellow-400 px-1 font-bold text-black">JS</span>
           Play{' '}
           <sub className="text-1  text-neutral-500 dark:text-neutral-400">
-            _by_shubham
+           <a href='https://github.com/shubhkulkarni'>_by_shubham</a> 
           </sub>
         </div>
         <div className="icon-btns flex items-center">
