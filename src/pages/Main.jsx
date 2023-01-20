@@ -35,7 +35,7 @@ const Main = () => {
 
   useEffect(()=>{
     const codeStr = storage.get($.CODE);
-    setCodeString(codeStr);
+    if(codeStr) setCodeString(codeStr);
   },[]);
 
   const toggleTheme = useCallback(() => {
