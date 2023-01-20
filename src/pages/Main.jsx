@@ -75,7 +75,7 @@ const Main = () => {
           </sub>
         </div>
         <div className="icon-btns flex items-center">
-          {saved && <div className="text-xs mr-4 text-neutral-200">Changes saved !</div>}
+          {saved && <div className="text-xs mr-4 text-blue-700 dark:text-neutral-200">Changes saved !</div>}
           <button
             title={"Prettify your code"}
             className="m-0 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
