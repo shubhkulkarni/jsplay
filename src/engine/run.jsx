@@ -79,12 +79,12 @@ export const renderMsg = (msg, theme) => {
           </div>
         );
       return (
-        <div
+        <pre
           
           className="border-b border-neutral-300 border-opacity-80 py-1.5 dark:border-neutral-700"
         >
           {i}
-        </div>
+        </pre>
       );
     });
   } catch (err) {
