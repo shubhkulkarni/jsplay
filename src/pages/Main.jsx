@@ -18,7 +18,7 @@ import Settings from '../components/Settings';
 const storage = new Storage({type: localStorage, async: false});
 
 const Main = () => {
-  const [codeString, setCodeString] = useState('// Start writing your code ex. console.log("Hello World!")');
+  const [codeString, setCodeString] = useState('// Start writing your code ex. console.log("Hello World!");');
   const [theme, setTheme] = useState($.DARK);
   const [saved,setSaved] = useState(false);
   const [layout,setLayout] = useState($.COLUMNS);
