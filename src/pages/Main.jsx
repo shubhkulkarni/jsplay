@@ -14,6 +14,7 @@ import rowsDark from '../assets/rowsDark.svg';
 import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
 
+
 const storage = new Storage({type: localStorage, async: false});
 
 const Main = () => {
@@ -22,12 +23,12 @@ const Main = () => {
   const [saved,setSaved] = useState(false);
   const [layout,setLayout] = useState($.COLUMNS);
 
+  useEditor();
+
   const columnLayout = layout === $.COLUMNS;
 
   const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
   const darkLayoutSrc = columnLayout ? rowsDark : columnsDark ;
-
-  useEditor();
 
   const debounceFn = useCallback(_debounce(handleDebounceFn, 3000), []);
 
@@ -42,6 +43,8 @@ const Main = () => {
     if(codeStr) setCodeString(codeStr);
     const lyt = storage.get($.LAYOUT);
     if(lyt) setLayout(lyt);
+    const theme = storage.get($.THEME);
+    if(theme) setTheme(theme);
   },[]);
 
   const toggleTheme = useCallback(() => {
@@ -83,7 +86,8 @@ const Main = () => {
     setCodeString(val);
     debounceFn(val);
   },[debounceFn]);
-
+  
+  
   const btnTitle = theme === $.DARK ? 'Switch to light theme' : 'Switch to dark theme';
   
   return (

@@ -1,4 +1,5 @@
 import MonacoEditor from '@monaco-editor/react';
+import React from 'react';
 
 const CodeView = (props) => {
   return (
@@ -8,4 +9,4 @@ const CodeView = (props) => {
   );
 };
 
-export default CodeView;
+export default React.memo(CodeView);
