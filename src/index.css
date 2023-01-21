@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer components{
+  .pane-border {
+    @apply border-t border-neutral-300 border-opacity-80 dark:border-neutral-700
+  }
+}
+
 *,
 *::after,
 *::before,
@@ -67,7 +74,7 @@ body {
 }
 
 .light *::-webkit-scrollbar-thumb {
-  background-color: #919191;
+  background-color: #9b9a9a;
   border-radius: 14px;
   border: 0px solid #ffffff;
 }

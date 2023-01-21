@@ -14,14 +14,23 @@ import {js_beautify} from 'js-beautify';
 import Storage from '../engine/storage';
 import { useEffect } from 'react';
 import _debounce from 'lodash/debounce';
-
+import rowsLight from '../assets/rows.svg';
+import columnsLight from '../assets/columns.svg';
+import rowsDark from '../assets/rowsDark.svg';
+import columnsDark from '../assets/columnsDark.svg';
 
 const storage = new Storage({type: localStorage, async: false});
 
 const Main = () => {
-  const [codeString, setCodeString] = useState('// Start writing your code...');
+  const [codeString, setCodeString] = useState('// Start writing your code ex. console.log("Hello World!")');
   const [theme, setTheme] = useState($.DARK);
   const [saved,setSaved] = useState(false);
+  const [layout,setLayout] = useState($.COLUMNS);
+
+  const columnLayout = layout === $.COLUMNS;
+
+  const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
+  const darkLayoutSrc = columnLayout ? rowsDark : columnsDark ;
 
   useEditor();
 
@@ -36,19 +45,41 @@ const Main = () => {
   useEffect(()=>{
     const codeStr = storage.get($.CODE);
     if(codeStr) setCodeString(codeStr);
+    const lyt = storage.get($.LAYOUT);
+    if(lyt) setLayout(lyt);
   },[]);
 
   const toggleTheme = useCallback(() => {
+
     setTheme((prev) => {
-      if (prev === $.LIGHT) return $.DARK;
-      return $.LIGHT;
+      if (prev === $.LIGHT) {
+        storage.set($.THEME,$.DARK);
+        return $.DARK;
+      }else{
+        storage.set($.THEME,$.LIGHT);
+        return $.LIGHT;
+      }
     });
+
   }, []);
 
   const onPrettify = useCallback(() => {
     setCodeString(prev => {
       return js_beautify(prev, { preserve_newlines: false});
     })
+  },[]);
+
+  const onLayoutChange = useCallback(() => {
+    setLayout((prev) => {
+      if (prev === $.COLUMNS) {
+        storage.set($.LAYOUT,$.ROWS);
+        return $.ROWS;
+      }else{
+        storage.set($.LAYOUT,$.COLUMNS);
+        return $.COLUMNS;
+      }
+
+    });
     
   },[]);
 
@@ -59,7 +90,7 @@ const Main = () => {
   },[]);
 
   const btnTitle = theme === $.DARK ? 'Switch to light theme' : 'Switch to dark theme';
-
+  
   return (
     <div className={`flex h-screen w-full flex-col justify-start ${theme}`}>
       <div
@@ -76,9 +107,19 @@ const Main = () => {
         </div>
         <div className="icon-btns flex items-center">
           {saved && <div className="text-xs mr-4 text-blue-700 dark:text-neutral-200">Changes saved !</div>}
+          
+          <button
+            title={"Change layout"}
+            className="m-0 rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
+            type="button"
+            onClick={onLayoutChange}
+          >
+            <img src={theme === $.DARK ? darkLayoutSrc : lightLayoutSrc} className="dark-icon h-5" />
+          </button>
+          
           <button
             title={"Prettify your code"}
-            className="m-0 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="m-0 ml-2 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={onPrettify}
           >
@@ -97,9 +138,9 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="work-space flex w-full flex-1 items-center justify-between ">
-        <CodeView onChange={onEditorChange} value={codeString} theme={theme} />
-        <ResultsView code={codeString} theme={theme} />
+      <div className={`work-space flex-column ${columnLayout ? `sm:flex` : `sm:flex-column`} w-full flex-1 items-center justify-between `}>
+        <CodeView onChange={onEditorChange} value={codeString} theme={theme} columnLayout={columnLayout} />
+        <ResultsView code={codeString} theme={theme} columnLayout={columnLayout} />
       </div>
     </div>
   );

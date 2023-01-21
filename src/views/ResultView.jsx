@@ -1,7 +1,7 @@
 import { renderMsg, runJS } from '../engine/run';
 import { useLog } from '../engine/hooks';
 
-const ResultsView = ({ code, theme }) => {
+const ResultsView = ({ code, theme,columnLayout }) => {
   const { logMessages: msg, errors, warnings } = useLog();
 
   const output = runJS(code);
@@ -9,7 +9,7 @@ const ResultsView = ({ code, theme }) => {
   const showConsoleName = !output && errors.length === 0 && warnings.length === 0;
 
   return (
-    <div className="h-full  w-1/2  bg-white text-white dark:bg-neutral-900">
+    <div className={`h-1/2 w-full ${columnLayout ? `sm:h-full sm:w-1/2` :`sm:h-1/2 sm:w-full`} pane-border bg-white text-white dark:bg-neutral-900 `}>
       <div className="output-text flex max-h-full flex-col overflow-auto px-3">
         {/* <div className="text-neutral-300 py-0.5 pb-2">
                     <span className="text-lime-400 font-bold">{`>_ `}</span>  Console output</div> */}

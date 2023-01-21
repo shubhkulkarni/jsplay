@@ -2,7 +2,7 @@ import MonacoEditor from '@monaco-editor/react';
 
 const CodeView = (props) => {
   return (
-    <div className="editor-main h-full w-1/2">
+    <div className={`editor-main h-1/2 w-full ${props.columnLayout ? `sm:h-full sm:w-1/2` :`sm:h-1/2 sm:w-full`} `}>
       <MonacoEditor {...props} defaultLanguage="javascript" />
     </div>
   );
