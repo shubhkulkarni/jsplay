@@ -21,7 +21,7 @@ function Settings({saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme
           
           <button
             title={"Prettify your code"}
-            className="m-0 ml-2 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="m-0 sm:ml-2 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={onPrettify}
           >
