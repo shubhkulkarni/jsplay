@@ -9,7 +9,7 @@ const ResultsView = ({ code, theme,columnLayout }) => {
   const showConsoleName = !output && errors.length === 0 && warnings.length === 0;
 
   return (
-    <div className={`h-1/2 w-full ${columnLayout ? `sm:h-full sm:w-1/2` :`sm:h-1/2 sm:w-full`} pane-border bg-white text-white dark:bg-neutral-900 `}>
+    <div className={`h-1/2 w-full ${columnLayout ? `sm:h-full sm:w-1/2 sm:border-0` :`sm:h-1/2 sm:w-full sm:pane-border`} pane-border bg-white text-white dark:bg-neutral-900 `}>
       <div className="output-text flex max-h-full flex-col overflow-auto px-3">
         
         {output && (
