@@ -93,9 +93,9 @@ const Main = () => {
   return (
     <div className={`flex h-screen w-full flex-col justify-start ${theme}`}>
       <div
-        className="header flex items-center justify-between 
+        className="header z-10 flex items-center justify-between 
         border-b border-neutral-400 border-opacity-30 bg-white py-3 
-        px-4 font-semibold shadow-xl dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+        px-4 font-semibold shadow dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
       >
         <div>
           <span className="mr-1 rounded bg-yellow-400 px-1 font-bold text-black">JS</span>
