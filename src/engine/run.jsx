@@ -2,11 +2,15 @@ import ReactJson from 'react-json-view';
 import $ from '../themes/constants';
 import { isCyclic } from './cyclicRef';
 import { classes } from './classes';
+import { runInSandbox } from './sandbox';
 
+
+const iframe = document.getElementById('sandbox');
 
 export const runJS = (code) => {
   try {
-    return new Function(code)();
+    return runInSandbox(iframe,code);
+    // return new Function(code)();
   } catch (err) {
     return String(err);
   }
