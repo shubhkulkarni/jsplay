@@ -22,6 +22,7 @@ const Main = () => {
   const [theme, setTheme] = useState($.DARK);
   const [saved,setSaved] = useState(false);
   const [layout,setLayout] = useState($.COLUMNS);
+  const [copied,setCopied] = useState(false);
 
   useEditor();
 
@@ -35,6 +36,7 @@ const Main = () => {
   function handleDebounceFn(val) {
     storage.set($.CODE,val);
     setSaved(true);
+    setCopied(false);
   }
 
 
@@ -64,7 +66,8 @@ const Main = () => {
   const onPrettify = useCallback(() => {
     setCodeString(prev => {
       return js_beautify(prev, { preserve_newlines: false});
-    })
+    });
+    setCopied(false);
   },[]);
 
   const onLayoutChange = useCallback(() => {
@@ -83,6 +86,7 @@ const Main = () => {
 
   const onEditorChange = useCallback(val => {
     setSaved(false);
+    setCopied(false);
     setCodeString(val);
     debounceFn(val);
   },[debounceFn]);
@@ -112,6 +116,9 @@ const Main = () => {
             toggleTheme={toggleTheme}
             onLayoutChange={onLayoutChange}
             onPrettify={onPrettify}
+            code={codeString}
+            copy={[copied,setCopied]}
+            setSaved={setSaved}
           />
       </div>
 
