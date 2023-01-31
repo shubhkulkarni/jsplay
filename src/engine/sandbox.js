@@ -1,5 +1,3 @@
-// Create an iframe
-
 export function runInSandbox(iframe,code) {
     
     if (iframe) {
