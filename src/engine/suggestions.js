@@ -2,13 +2,13 @@ export const autoSuggestions = monaco => {
     
     return([
     {
-        label: 'clg',
+        label: 'cl',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Log values to console output',
         insertText: `console.log();`
     },
     {
-        label: 'forloop',
+        label: 'forLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For loop',
         insertText: [
@@ -17,7 +17,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'forinloop',
+        label: 'forInLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For-in loop',
         insertText: [
@@ -26,7 +26,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'forofloop',
+        label: 'forOfLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For-of loop',
         insertText: [
@@ -35,7 +35,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'whileloop',
+        label: 'whileLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'While loop',
         insertText: [
@@ -44,7 +44,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'dowhileloop',
+        label: 'doWhileLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Do-while loop',
         insertText: [
@@ -53,13 +53,13 @@ export const autoSuggestions = monaco => {
             '}while(condition);'].join('\n')
     },
     {
-        label: 'arrow1func',
+        label: 'funcArrowSingle',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Arrow function single line',
         insertText: 'const func = a =>  ;',
     },
     {
-        label: 'arrow2func',
+        label: 'funcArrow',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Arrow function',
         insertText: [
@@ -68,7 +68,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'normalFunc',
+        label: 'funcDeclaration',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Normal function declaration',
         insertText: [
@@ -86,13 +86,13 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'asyncarrow1func',
+        label: 'asyncFuncArrowSingle',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Async arrow function single line',
         insertText: 'const func = async a =>  ;',
     },
     {
-        label: 'asyncarrow2func',
+        label: 'asyncFuncArrow',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Async arrow function',
         insertText: [
@@ -101,7 +101,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'asyncnormalFunc',
+        label: 'asyncFuncDeclaration',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Async function declaration',
         insertText: [
@@ -116,7 +116,7 @@ export const autoSuggestions = monaco => {
         insertText: `const arr = [];`
     },
     {
-        label: 'ifblock',
+        label: 'ifBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'If condition block',
         insertText: [
@@ -125,7 +125,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'elseblock',
+        label: 'elseBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Else condition block',
         insertText: [
@@ -134,7 +134,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'ifelseblock',
+        label: 'ifElseBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'If-else condition block',
         insertText: [
@@ -145,7 +145,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'elseifblock',
+        label: 'elseIfBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Else-if condition block',
         insertText:  [
@@ -154,7 +154,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'trycatchblock',
+        label: 'tryCatchBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Try-catch blocks',
         insertText:  [
@@ -166,7 +166,7 @@ export const autoSuggestions = monaco => {
         ].join('\n')
     },
     {
-        label: 'finallyblock',
+        label: 'finallyBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Finally block',
         insertText:  [
@@ -176,7 +176,7 @@ export const autoSuggestions = monaco => {
         ].join('\n')
     },
     {
-        label: 'constructorblock',
+        label: 'constructorBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Constructor',
         insertText:  [
@@ -185,7 +185,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'classwithconstructor',
+        label: 'classWithConstructor',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Class with constructor',
         insertText:  [
@@ -197,7 +197,7 @@ export const autoSuggestions = monaco => {
         '}'].join('\n')
     },
     {
-        label: 'classmethod',
+        label: 'classMethod',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Class method block',
         insertText:  [
@@ -206,25 +206,25 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'newinstance',
+        label: 'newInstance',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Create new object (instance) of class',
         insertText:  `const obj = new ClassName();`
     },
     {
-        label: 'objliteral',
+        label: 'objLiteral',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Create an object literal',
         insertText:  `const obj = { key: value, }`
     },
     {
-        label: 'arrobjliteral',
+        label: 'arrObjLiteral',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Create an array of object literals',
         insertText:  `const objArr = [{key: value},]`
     },
     {
-        label: 'switchblock',
+        label: 'switchBlock',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Switch case block',
         insertText:  [
