@@ -1,6 +1,8 @@
 import { loader } from '@monaco-editor/react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { themeData } from '../themes/dark1';
+import { autoSuggestions } from './suggestions';
 
 export const useLog = function () {
   const logBackup = console.log;
@@ -56,11 +58,24 @@ export const useLog = function () {
 
 export const useEditor = () => {
 
+  const suggestions = useCallback(
+    autoSuggestions,
+    [autoSuggestions],
+  );
+
   useEffect(()=>{
     loader.init().then(monaco => {
       monaco.editor.defineTheme('dark', themeData);
       monaco.editor.bracketPairColorization = true;
       monaco.editor.scrollBeyondLastLine = false;
+
+      monaco.languages.registerCompletionItemProvider('javascript', {
+        provideCompletionItems: () => {
+          return {
+            suggestions: suggestions(monaco)
+          };
+        }
+      });
     });
   },[]);
 

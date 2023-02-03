@@ -23,6 +23,7 @@ const Main = () => {
   const [saved,setSaved] = useState(false);
   const [layout,setLayout] = useState($.COLUMNS);
   const [copied,setCopied] = useState(false);
+  const [showSnip,setShowSnip] = useState(true);
 
   useEditor();
 
@@ -84,11 +85,16 @@ const Main = () => {
     
   },[]);
 
+  const toggleSnip = useCallback(()=>{
+    setShowSnip(prev => !prev)
+},[]);
+
   const onEditorChange = useCallback(val => {
     setSaved(false);
     setCopied(false);
     setCodeString(val);
     debounceFn(val);
+    setShowSnip(false);
   },[debounceFn]);
   
   
@@ -119,12 +125,13 @@ const Main = () => {
             code={codeString}
             copy={[copied,setCopied]}
             setSaved={setSaved}
+            onSnipChange={toggleSnip}
           />
       </div>
 
       <div className={`work-space flex-column ${columnLayout ? `sm:flex` : `sm:flex-column`} w-full flex-1 items-center justify-between `}>
         <CodeView onChange={onEditorChange} value={codeString} theme={theme} columnLayout={columnLayout} />
-        <ResultsView code={codeString} theme={theme} columnLayout={columnLayout} />
+        <ResultsView code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>
       </div>
     </div>
   );

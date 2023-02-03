@@ -8,9 +8,12 @@ import { copyContent } from '../engine/copyToClipBoard';
 import copyDark from "../assets/copyDark.svg";
 import copyLight from "../assets/copyLight.svg";
 import { useCallback } from 'react';
+import snipDark from '../assets/snipDark.svg';
+import snipLight from '../assets/snipLight.svg'
+
 
 function Settings(props) {
-  const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved} = props;
+  const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,onSnipChange} = props;
   const [copied,setCopied] = copy;
   const onCopyText = useCallback(async ()=>{
         try{
@@ -29,8 +32,17 @@ function Settings(props) {
          
 
           <button
+            title={"Show / Hide snippets"}
+            className="m-0  rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
+            type="button"
+            onClick={onSnipChange}
+          >
+            <img src={theme === $.DARK ? snipDark : snipLight} className="dark-icon h-5" />
+          </button>
+
+          <button
             title={"Change layout"}
-            className="m-0 rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
+            className="m-0 sm:ml-3 rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
             type="button"
             onClick={onLayoutChange}
           >
