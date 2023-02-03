@@ -5,7 +5,7 @@ export const autoSuggestions = monaco => {
         label: 'cl',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Log values to console output',
-        insertText: `console.log();`
+        insertText: `console.log()`
     },
     {
         label: 'forLoop',
@@ -110,7 +110,7 @@ export const autoSuggestions = monaco => {
             '}'].join('\n')
     },
     {
-        label: 'arr',
+        label: 'ar',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Create an empty array',
         insertText: `const arr = [];`
