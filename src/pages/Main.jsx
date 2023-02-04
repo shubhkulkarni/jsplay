@@ -66,7 +66,7 @@ const Main = () => {
 
   const onPrettify = useCallback(() => {
     setCodeString(prev => {
-      return js_beautify(prev, { preserve_newlines: false});
+      return js_beautify(prev, { preserve_newlines: true,max_preserve_newlines:2});
     });
     setCopied(false);
   },[]);
