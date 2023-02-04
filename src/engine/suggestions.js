@@ -208,7 +208,7 @@ export const autoSuggestions = monaco => {
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Class method block',
         insertText:  [
-            'method(){',
+            '(){',
             '\t',
             '}'].join('\n')
     },
