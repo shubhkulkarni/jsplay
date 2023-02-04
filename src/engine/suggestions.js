@@ -8,6 +8,12 @@ export const autoSuggestions = monaco => {
         insertText: `console.log()`
     },
     {
+        label: 'cls',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Log string to console output',
+        insertText: `console.log("")`
+    },
+    {
         label: 'forLoop',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For loop',
@@ -191,9 +197,10 @@ export const autoSuggestions = monaco => {
         insertText:  [
             'class ABC {',
             '\t',
-            'constructor(){',
+            '\tconstructor(){',
+            '\t\t',
+            '\t}',
             '\t',
-            '}',
         '}'].join('\n')
     },
     {
@@ -210,6 +217,24 @@ export const autoSuggestions = monaco => {
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Create new object (instance) of class',
         insertText:  `const obj = new ClassName();`
+    },
+    {
+        label: 'newSet',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Create new Set',
+        insertText:  `const set1 = new Set();`
+    },
+    {
+        label: 'newMap',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Create new Map',
+        insertText:  `const map = new Map();`
+    },
+    {
+        label: 'newDate',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Create new Date object',
+        insertText:  `const date = new Date();`
     },
     {
         label: 'objLiteral',
@@ -231,7 +256,7 @@ export const autoSuggestions = monaco => {
             'switch(a){',
             
             '\tcase 1:',
-            '\tbreak;',
+            '\t\tbreak;',
             '}'].join('\n')
     },
     
