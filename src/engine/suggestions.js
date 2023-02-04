@@ -18,7 +18,7 @@ export const autoSuggestions = monaco => {
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For loop',
         insertText: [
-            'for(let i= a; i < b; i++){',
+            'for(let i = a; i < b; i++){',
             '\t',
             '}'].join('\n')
     },
