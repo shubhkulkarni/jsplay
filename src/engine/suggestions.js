@@ -196,11 +196,9 @@ export const autoSuggestions = monaco => {
         documentation: 'Class with constructor',
         insertText:  [
             'class ABC {',
-            '\t',
             '\tconstructor(){',
             '\t\t',
             '\t}',
-            '\t',
         '}'].join('\n')
     },
     {
