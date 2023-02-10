@@ -3,17 +3,19 @@ import $ from '../themes/constants';
 import { isCyclic } from './cyclicRef';
 import { classes } from './classes';
 import { runInSandbox } from './sandbox';
+import { useState } from 'react';
 
 
 const iframe = document.getElementById('sandbox');
 
-export const runJS = (code) => {
+export const jsRunner = (code) => {
+  
   try {
     return runInSandbox(iframe,code);
-    // return new Function(code)();
   } catch (err) {
     return String(err);
   }
+  
 };
 
 export const renderMsg = (msg, theme) => {

@@ -5,7 +5,8 @@ const $ = Object.freeze({
   ROWS:'rows',
   COLUMNS:'columns',
   THEME:'theme',
-  LAYOUT:'layout'
+  LAYOUT:'layout',
+  LOOP_ERR:'loop_err'
 });
 
 export default $;
