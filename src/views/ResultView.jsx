@@ -53,8 +53,8 @@ const ResultsView = ({ code, theme, columnLayout, showSnip }) => {
           <div className="error mb-2 rounded bg-red-200 p-1 px-2 font-semibold text-red-800 dark:bg-red-700 dark:bg-opacity-50 dark:font-normal dark:text-white">
             {loopErr}
           </div>
-          <div className='ml-2 dark:text-lime-300 text-green-700 dark:font-normal font-semibold'>
-            Tip : Script execution is paused. Use '<span className="dark:text-yellow-400"> ▷ </span>' button to run the code again.
+          <div className='ml-2 text-sm dark:text-lime-300 text-green-700 dark:font-normal font-semibold'>
+            <b>Note : </b>Script execution is paused. Use ( Run ) '<span className="font-bold dark:text-yellow-400"> ▷ </span>' button to run the code again.
         </div></>
         )}
 
