@@ -4,6 +4,7 @@ if (!window)
 /**
  *
  * @param {Object} config
+ *
  */
 function Storage(config) {
   const newConfig = Object.assign({}, { type: localStorage, async: false }, config);
