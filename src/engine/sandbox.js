@@ -5,6 +5,7 @@ export function runInSandbox(iframe,code) {
         iframeWindow.parent = undefined;
         // let newCode = `let _timer = Date.now();\n` + removeComments(code);
         const newCode = `let _timer = Date.now();\n` + replaceLoops(code)
+        console.log(newCode)
         return new Function('window','document', newCode)(iframeWindow,undefined);
     }
 
@@ -16,8 +17,8 @@ const replaceLoops = code =>{
     const suffixFor = `\nif (Date.now() > (_timer + 800)) throw "A potential infinite 'for' loop detected ! Please refactor your code.";\n`
     const suffixWhile = `\nif (Date.now() > (_timer + 800)) throw "A potential infinite 'while' loop detected ! Please refactor your code.";\n`
     const suffixDoWhile = `\nif (Date.now() > (_timer + 800)) throw "A potential infinite 'do-while' loop detected ! Please refactor your code.";\n`
-    let forSafe = code.replaceAll(/for\s*\([^)]*\)\s*\{*/gmi,match => match + suffixFor);
-    let whileSafe = forSafe.replace(/while\s*\([^)]*\)\s*\{*/gmi,match => match + suffixWhile);
+    let forSafe = code.replaceAll(/for\s*\([\S\s][^{]*\)\s*\{*\;*/gmi,match => match + suffixFor);
+    let whileSafe = forSafe.replace(/while\s*\([\S\s][^{]*\)\s*\{*\;*/gmi,match => match + suffixWhile);
     let doWhileSafe = whileSafe.replaceAll(/^\s*do\s*\{/gmi,match => match + suffixDoWhile);
     return doWhileSafe;
 }
