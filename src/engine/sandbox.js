@@ -5,7 +5,6 @@ export function runInSandbox(iframe,code) {
         iframeWindow.parent = undefined;
         // let newCode = `let _timer = Date.now();\n` + removeComments(code);
         const newCode = `let _timer = Date.now();\n` + replaceLoops(code)
-        console.log(newCode)
         return new Function('window','document', newCode)(iframeWindow,undefined);
     }
 
