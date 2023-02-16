@@ -10,10 +10,13 @@ import copyLight from "../assets/copyLight.svg";
 import { useCallback } from 'react';
 import snipDark from '../assets/snipDark.svg';
 import snipLight from '../assets/snipLight.svg'
+import HideConsole from './HideConsole';
+import ShowConsole from './ShowConsole';
 
 
 function Settings(props) {
-  const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,onSnipChange} = props;
+  const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,
+    onChangeConsole,onSnipChange,console} = props;
   const [copied,setCopied] = copy;
   const onCopyText = useCallback(async ()=>{
         try{
@@ -27,13 +30,22 @@ function Settings(props) {
 
   return (
     <div className="icon-btns flex items-center">
-          {saved && <div className="text-xs font-semibold sm:mr-4 mr-2 text-blue-700 dark:text-cyan-200">Changes saved !</div>}
+          {saved && <div className="text-xs sm:block hidden font-semibold sm:mr-4 mr-2 text-blue-700 dark:text-cyan-200">Changes saved !</div>}
+          {saved && <div className="text-xs block sm:hidden font-semibold sm:mr-4 mr-2 text-blue-700 dark:text-cyan-200">Saved !</div>}
           {copied && <div className="text-xs sm:mr-4 mr-2 text-blue-700 dark:text-lime-300">Code copied !</div>}
-         
+
+          <button
+            title={console ? 'Hide Console Output' : 'Show Console Output'}
+            className="m-0 sm:ml-3 rounded-full p-1 hover:bg-neutral-300 dark:hover:bg-neutral-600 "
+            type="button"
+            onClick={onChangeConsole}
+          >
+            {!console ? <ShowConsole className='h-5' theme={theme} /> :<HideConsole className='h-5' theme={theme}/>}
+          </button>
 
           <button
             title={"Show / Hide snippets"}
-            className="m-0  rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
+            className="m-0 sm:ml-3 ml-1 rounded-full p-1 sm:block  hover:bg-neutral-300 dark:hover:bg-neutral-600 hidden"
             type="button"
             onClick={onSnipChange}
           >
@@ -51,7 +63,7 @@ function Settings(props) {
 
           <button
             title={"Copy code to clipboard"}
-            className="m-0 sm:ml-3 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="m-0 sm:ml-3 ml-1 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={onCopyText}
           >

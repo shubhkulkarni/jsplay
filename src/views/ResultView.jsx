@@ -9,7 +9,7 @@ import Fab from '../components/Fab';
 import Run from '../components/Run';
 
 
-const ResultsView = ({ code, theme, columnLayout, showSnip }) => {
+const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
   const { logMessages: msg, errors, warnings } = useLog();
   const [safeRun, setSafeRun] = useState(true);
   const [loopErr, setLoopErr] = useState(null);
@@ -40,7 +40,7 @@ const ResultsView = ({ code, theme, columnLayout, showSnip }) => {
   }, []);
 
   return (
-    <div className={`h-1/2 w-full ${columnLayout ? `sm:h-full sm:w-1/2 sm:border-0` : `sm:h-1/2 sm:w-full sm:pane-border`} pane-border bg-white text-white dark:bg-neutral-900 `}>
+    <div className={`h-1/2 w-full ${console ? (columnLayout ? `sm:h-full sm:w-1/2 sm:border-0` : `sm:h-1/2 sm:w-full sm:pane-border`) : 'hidden'} pane-border bg-white text-white dark:bg-neutral-900 `}>
       <div className="output-text flex max-h-full flex-col overflow-auto px-3">
 
         {output && (

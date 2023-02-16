@@ -24,7 +24,7 @@ const Main = () => {
   const [layout,setLayout] = useState($.COLUMNS);
   const [copied,setCopied] = useState(false);
   const [showSnip,setShowSnip] = useState(true);
-
+  const [showConsole,setShowConsole] = useState(true);
   useEditor();
 
   const columnLayout = layout === $.COLUMNS;
@@ -97,7 +97,10 @@ const Main = () => {
     setShowSnip(false);
   },[debounceFn]);
   
-  
+  const onChangeConsole = useCallback(() => {
+      setShowConsole(prev => !prev);
+  },[]);
+
   const btnTitle = theme === $.DARK ? 'Switch to light theme' : 'Switch to dark theme';
   
   return (
@@ -126,12 +129,14 @@ const Main = () => {
             copy={[copied,setCopied]}
             setSaved={setSaved}
             onSnipChange={toggleSnip}
+            onChangeConsole={onChangeConsole}
+            console={showConsole}
           />
       </div>
 
       <div className={`work-space flex-column ${columnLayout ? `sm:flex` : `sm:flex-column`} w-full flex-1 items-center justify-between `}>
-        <CodeView onChange={onEditorChange} value={codeString} theme={theme} columnLayout={columnLayout} />
-        <ResultsView code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>
+        <CodeView onChange={onEditorChange} console={showConsole} value={codeString} theme={theme} columnLayout={columnLayout} />
+        <ResultsView console={showConsole} code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>
       </div>
     </div>
   );
