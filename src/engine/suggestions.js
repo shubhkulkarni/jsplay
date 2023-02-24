@@ -18,7 +18,16 @@ export const autoSuggestions = monaco => {
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'For loop',
         insertText: [
-            'for(let i = a; i < b; i++){',
+            'for(let i = ; i < ; i++){',
+            '\t',
+            '}'].join('\n')
+    },
+    {
+        label: 'forLoopRev',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'For loop for reverse iteration',
+        insertText: [
+            'for(let i = ; i >= 0; i--){',
             '\t',
             '}'].join('\n')
     },
@@ -59,10 +68,22 @@ export const autoSuggestions = monaco => {
             '}while(condition);'].join('\n')
     },
     {
+        label: 'callbackSingle',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Generic callback',
+        insertText: '(value) => ',
+    },
+    {
+        label: 'callbackArr',
+        kind: monaco?.languages?.CompletionItemKind?.Snippet,
+        documentation: 'Array methods callback',
+        insertText: '(value,index,array) => ',
+    },
+    {
         label: 'funcArrowSingle',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Arrow function single line',
-        insertText: 'const func = a =>  ;',
+        insertText: 'const func = a => ',
     },
     {
         label: 'funcArrow',
@@ -95,7 +116,7 @@ export const autoSuggestions = monaco => {
         label: 'asyncFuncArrowSingle',
         kind: monaco?.languages?.CompletionItemKind?.Snippet,
         documentation: 'Async arrow function single line',
-        insertText: 'const func = async a =>  ;',
+        insertText: 'const func = async a => ',
     },
     {
         label: 'asyncFuncArrow',
