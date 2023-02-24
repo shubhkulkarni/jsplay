@@ -68,7 +68,6 @@ export const useEditor = () => {
       monaco.editor.defineTheme('dark', themeData);
       monaco.editor.bracketPairColorization = true;
       monaco.editor.scrollBeyondLastLine = false;
-
       monaco.languages.registerCompletionItemProvider('javascript', {
         provideCompletionItems: () => {
           return {
