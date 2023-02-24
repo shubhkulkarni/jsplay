@@ -139,12 +139,10 @@ const Main = () => {
           options={{
             mouseWheelZoom:true,
             fontLigatures:true,
-            autoIndent:true,
             fontFamily:"Fira Code",
             // fontFamily: "JetBrains Mono",
             fontWeight:300,
             lineHeight:21,
-            fontSize:14
           }}
           console={showConsole} value={codeString} theme={theme} columnLayout={columnLayout} />
         <ResultsView console={showConsole} code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>
