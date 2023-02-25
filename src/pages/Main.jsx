@@ -142,7 +142,8 @@ const Main = () => {
             fontFamily:"Fira Code",
             // fontFamily: "JetBrains Mono",
             fontWeight:300,
-            lineHeight:21,
+            lineHeight:20,
+            fontSize: 13,
           }}
           console={showConsole} value={codeString} theme={theme} columnLayout={columnLayout} />
         <ResultsView console={showConsole} code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>
