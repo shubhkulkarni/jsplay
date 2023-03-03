@@ -149,7 +149,7 @@ const Main = () => {
             cursorSmoothCaretAnimation:'on',
             smoothScrolling: true,
             fontWeight:300,
-            lineHeight:20,
+            lineHeight:21,
             
           }}
           console={showConsole} value={codeString} theme={theme} columnLayout={columnLayout} />
