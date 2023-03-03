@@ -13,6 +13,7 @@ import columnsLight from '../assets/columns.svg';
 import rowsDark from '../assets/rowsDark.svg';
 import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
+import useFontFaceObserver from 'use-font-face-observer';
 
 
 const storage = new Storage({type: localStorage, async: false});
@@ -26,7 +27,9 @@ const Main = () => {
   const [showSnip,setShowSnip] = useState(true);
   const [showConsole,setShowConsole] = useState(true);
   useEditor();
-
+  useFontFaceObserver([
+    { family: `Fira Code` },
+  ]);
   const columnLayout = layout === $.COLUMNS;
 
   const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
@@ -140,10 +143,14 @@ const Main = () => {
             mouseWheelZoom:true,
             fontLigatures:true,
             fontFamily:"Fira Code",
-            // fontFamily: "JetBrains Mono",
+            autoIndent:true,
+            'bracketPairColorization.enabled':true,
+            'bracketPairColorization.independentColorPoolPerBracketType':true,
+            cursorSmoothCaretAnimation:'on',
+            smoothScrolling: true,
             fontWeight:300,
             lineHeight:20,
-            fontSize: 13,
+            
           }}
           console={showConsole} value={codeString} theme={theme} columnLayout={columnLayout} />
         <ResultsView console={showConsole} code={codeString} theme={theme} columnLayout={columnLayout} showSnip={showSnip}/>

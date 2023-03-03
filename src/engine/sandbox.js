@@ -1,10 +1,10 @@
 export function runInSandbox(iframe,code) {
-    
+
     if (iframe) {
         const iframeWindow = iframe.contentWindow;
         iframeWindow.parent = undefined;
         // let newCode = `let _timer = Date.now();\n` + removeComments(code);
-        const newCode = `let _timer = Date.now();\n` + replaceLoops(code)
+        const newCode = `"use strict";\nlet _timer = Date.now();\n` + replaceLoops(code)
         return new Function('window','document', newCode)(iframeWindow,undefined);
     }
 

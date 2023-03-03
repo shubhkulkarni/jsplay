@@ -47,6 +47,7 @@ body {
 /* Chrome, Edge, and Safari */
 .dark *::-webkit-scrollbar {
   width: 12px;
+  height: 12px;
 }
 
 .dark *::-webkit-scrollbar-track {
@@ -67,6 +68,7 @@ body {
 /* Chrome, Edge, and Safari */
 .light *::-webkit-scrollbar {
   width: 12px;
+  height: 12px;
 }
 
 .light *::-webkit-scrollbar-track {
