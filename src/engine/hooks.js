@@ -1,6 +1,7 @@
 import { loader } from '@monaco-editor/react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
+import useFontFaceObserver from 'use-font-face-observer';
 import { themeData } from '../themes/dark1';
 import { lightThemeData } from '../themes/light';
 import { autoSuggestions } from './suggestions';
@@ -63,16 +64,18 @@ export const useEditor = () => {
     autoSuggestions,
     [autoSuggestions],
   );
-
+  const isFontLoaded = useFontFaceObserver([
+    { family: `Fira Code` },
+  ]);
   useEffect(()=>{
     loader.init().then(monaco => {
       monaco.editor.defineTheme('dark', themeData);
       monaco.editor.defineTheme('light', lightThemeData);
       monaco.editor.bracketPairColorization = true;
       monaco.editor.scrollBeyondLastLine = false;
-      // if(isFontListLoaded) {
-        // monaco.editor.remeasureFonts()
-      // }
+      if(isFontLoaded) {
+        monaco.editor.remeasureFonts()
+      }
       monaco.languages.registerCompletionItemProvider('javascript', {
         provideCompletionItems: () => {
           return {
@@ -84,3 +87,4 @@ export const useEditor = () => {
   },[]);
 
 };
+

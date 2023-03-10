@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEditor } from '../engine/hooks';
+import { useEditor} from '../engine/hooks';
 import CodeView from '../views/CodeView';
 import ResultsView from '../views/ResultView';
 import $ from '../themes/constants';
@@ -13,7 +13,7 @@ import columnsLight from '../assets/columns.svg';
 import rowsDark from '../assets/rowsDark.svg';
 import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
-import useFontFaceObserver from 'use-font-face-observer';
+
 
 
 const storage = new Storage({type: localStorage, async: false});
@@ -27,9 +27,6 @@ const Main = () => {
   const [showSnip,setShowSnip] = useState(true);
   const [showConsole,setShowConsole] = useState(true);
   useEditor();
-  useFontFaceObserver([
-    { family: `Fira Code` },
-  ]);
   const columnLayout = layout === $.COLUMNS;
 
   const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
