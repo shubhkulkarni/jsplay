@@ -74,7 +74,7 @@ export const useEditor = () => {
       monaco.editor.bracketPairColorization = true;
       monaco.editor.scrollBeyondLastLine = false;
       if(isFontLoaded) {
-        monaco.editor.remeasureFonts()
+        monaco.editor.remeasureFonts();
       }
       monaco.languages.registerCompletionItemProvider('javascript', {
         provideCompletionItems: () => {
@@ -84,7 +84,7 @@ export const useEditor = () => {
         }
       });
     });
-  },[]);
+  },[isFontLoaded]);
 
 };
 
