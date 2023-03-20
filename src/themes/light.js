@@ -7,7 +7,7 @@ export const lightThemeData = {
         "token": ""
       },
       {
-        "foreground": "024cff",
+        "foreground": "3744fa",
         "token": "string"
       },
       {
@@ -15,7 +15,7 @@ export const lightThemeData = {
         "token": "constant.numeric"
       },
       {
-        "foreground": "aa0d91",
+        "foreground": "940260",
         "token": "keyword",
         fontStyle:'bold'
       },
