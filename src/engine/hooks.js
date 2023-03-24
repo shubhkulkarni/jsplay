@@ -2,9 +2,12 @@ import { loader } from '@monaco-editor/react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import useFontFaceObserver from 'use-font-face-observer';
+import $ from '../themes/constants';
 import { themeData } from '../themes/dark1';
 import { lightThemeData } from '../themes/light';
-import { autoSuggestions } from './suggestions';
+import { javaAutoSuggestions } from './suggestions/javaSuggestions';
+import { pythonAutoSuggestions } from './suggestions/pythonSuggestions';
+import { autoSuggestions } from './suggestions/suggestions';
 
 export const useLog = function () {
   const logBackup = console.log;
@@ -58,12 +61,17 @@ export const useLog = function () {
 };
 
 
-export const useEditor = () => {
+export const useEditor = (lang) => {
 
   const suggestions = useCallback(
     autoSuggestions,
     [autoSuggestions],
   );
+  
+  const javaSuggestions = useCallback(javaAutoSuggestions,[javaAutoSuggestions]);
+
+  const pythonSuggestions = useCallback(pythonAutoSuggestions,[pythonAutoSuggestions]);
+
   const isFontLoaded = useFontFaceObserver([
     { family: `Fira Code` },
   ]);
@@ -76,15 +84,36 @@ export const useEditor = () => {
       if(isFontLoaded) {
         monaco.editor.remeasureFonts();
       }
-      monaco.languages.registerCompletionItemProvider('javascript', {
-        provideCompletionItems: () => {
-          return {
-            suggestions: suggestions(monaco)
-          };
-        }
-      });
+      if(lang === $.JS){
+        monaco.languages.registerCompletionItemProvider('javascript', {
+          provideCompletionItems: () => {
+            return {
+              suggestions: suggestions(monaco)
+            };
+          }
+        });
+      }else if(lang === $.JAVA){
+        monaco.languages.registerCompletionItemProvider('java', {
+          provideCompletionItems: () => {
+            return {
+              suggestions: javaSuggestions(monaco)
+            };
+          }
+        });
+      }else{
+        monaco.languages.registerCompletionItemProvider('python', {
+          provideCompletionItems: () => {
+            return {
+              suggestions: pythonSuggestions(monaco)
+            };
+          }
+        });
+      }
+      
+
+      
     });
-  },[isFontLoaded]);
+  },[isFontLoaded,lang]);
 
 };
 

@@ -6,7 +6,11 @@ const $ = Object.freeze({
   COLUMNS:'columns',
   THEME:'theme',
   LAYOUT:'layout',
-  LOOP_ERR:'loop_err'
+  LOOP_ERR:'loop_err',
+  JS:'js',
+  JAVA:'java',
+  PY:'py',
+  LANG:'lang'
 });
 
 export default $;

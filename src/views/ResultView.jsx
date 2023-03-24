@@ -2,18 +2,28 @@ import { jsRunner, renderMsg } from '../engine/run';
 import { useLog } from '../engine/hooks';
 import { useState } from 'react';
 import { useCallback } from 'react';
-import { snippets } from '../engine/suggestions';
+import { snippets } from '../engine/suggestions/suggestions';
 import { useMemo } from 'react';
 import { useEffect } from 'react';
 import Fab from '../components/Fab';
 import Run from '../components/Run';
-
+import useGlobal from '../state';
+import $ from '../themes/constants';
+import RunScript from './RunScript';
+import { classes } from '../engine/classes';
+import { renderNonJS } from '../engine/runNonJS';
 
 const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
   const { logMessages: msg, errors, warnings } = useLog();
   const [safeRun, setSafeRun] = useState(true);
   const [loopErr, setLoopErr] = useState(null);
+  const [state,{setState}] = useGlobal();
+  
+  const onInputChange = useCallback((e)=>{
+    setState('codeInput',e.target.value)
+  },[setState]);
 
+  let output;
   const handleInfiniteLoop = useCallback(code => {
     let output = ''
     if (safeRun) {
@@ -29,7 +39,13 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
     return output
   }, [safeRun])
 
-  const output = handleInfiniteLoop(code)
+
+  if(state.language === $.JS){
+    output = handleInfiniteLoop(code)
+  }else{
+    output = state.err || ""
+  }
+  
   // const output = jsRunner(code);
 
   const showConsoleName = !output && errors.length === 0 && warnings.length === 0;
@@ -38,10 +54,13 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
     setSafeRun(true)
     setLoopErr(null)
   }, []);
-
+  const isJS = state.language === $.JS;
   return (
-    <div className={`h-1/2 w-full ${console ? (columnLayout ? `sm:h-full sm:w-1/2 sm:border-0` : `sm:h-1/2 sm:w-full sm:pane-border`) : 'hidden'} pane-border bg-white text-white dark:bg-neutral-900 `}>
+    <div className={`h-1/2 w-full ${console ? (columnLayout ? `sm:h-full sm:w-1/2 sm:border-0` : `sm:h-1/2 sm:w-full sm:pane-border`) : 'hidden'} pane-border bg-white text-white dark:bg-neutral-900 flex flex-col justify-between`}>
       <div className="output-text flex max-h-full flex-col overflow-auto px-3">
+
+        {!isJS && <RunScript theme={theme} code={code}/>}
+
 
         {output && (
           <div className="error rounded bg-red-200 p-1 px-2 font-semibold text-red-800 dark:bg-red-700 dark:bg-opacity-50 dark:font-normal dark:text-white">
@@ -74,7 +93,9 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
           </div>
         )}
 
-        {!output && !loopErr && (
+        {!isJS && state.output &&  renderNonJS(state.output)}
+
+        {isJS && !output && !loopErr && (
           <div className="console-output py-1 font-semibold text-green-600 dark:font-normal dark:text-lime-400">
             {msg.length
               ? renderMsg(msg, theme)
@@ -82,14 +103,14 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
                 <>
                   <div className="output-text-primary text-neutral-500 dark:text-neutral-300">
                     <span className="font-bold text-lime-600 dark:text-lime-400">{`>_ `}</span>{' '}
-                    Console Output
+                    Console Output ( JS )
                   </div>
                 </>
               )}
           </div>
         )}
 
-        {showSnip && !loopErr && <div className="mt-4 text-sm ">
+        {isJS && showSnip && !loopErr && <div className="mt-4 text-sm ">
           <div className="dark:text-lime-500 text-lime-600 font-semibold dark:font-normal">Javascript snippet shortcuts to code faster !</div>
           {
             snippets.map(item => {
@@ -104,7 +125,10 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
           }</div>}
           {!safeRun && <Fab onClick={onFabClick} />}
       </div>
-      
+      {!isJS && <div className="text-black flex flex-col py-2 px-3">
+          <div className="output-text-primary mb-1 dark:font-normal font-semibold text-neutral-500 dark:text-neutral-300">Add code inputs here (in case of multiple inputs ,enter each at newline)</div>
+          <textarea value={state.codeInput} onChange={onInputChange} className='dark:bg-neutral-900 dark:text-neutral-100 dark:font-normal font-semibold text-neutral-800 resize-none focus:outline-none border-2 border-neutral-300 dark:border-neutral-700 border-opacity-80 rounded-lg p-3' name="input-pane" id="input-pane" cols="30" rows="5"></textarea>
+      </div>}
     </div>
   );
 };

@@ -12,12 +12,24 @@ import snipDark from '../assets/snipDark.svg';
 import snipLight from '../assets/snipLight.svg'
 import HideConsole from './HideConsole';
 import ShowConsole from './ShowConsole';
+import SettingsIcon from './SettingsIcon';
+import { useState } from 'react';
+import Modal from './Modal/Modal';
+import SelecteCardList from './SelectCard/SelecteCardList';
+import SettingsView from '../views/SettingsView';
+import useGlobal from '../state';
 
 
 function Settings(props) {
   const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,
     onChangeConsole,onSnipChange,console} = props;
   const [copied,setCopied] = copy;
+  const [state,{setState}] = useGlobal();
+
+  const onSettingsOpen = useCallback(()=>{
+    setState('modalOpen',true);
+  },[]);
+
   const onCopyText = useCallback(async ()=>{
         try{
           await copyContent(code);
@@ -28,11 +40,11 @@ function Settings(props) {
         }
   },[copyContent,code,copy,setSaved]);
 
+  
   return (
     <div className="icon-btns flex items-center">
           {saved && <div className="text-xs sm:block hidden font-semibold sm:mr-4 mr-2 text-blue-700 dark:text-cyan-200">Changes saved !</div>}
-          {saved && <div className="text-xs block sm:hidden font-semibold sm:mr-4 mr-2 text-blue-700 dark:text-cyan-200">Saved !</div>}
-          {copied && <div className="text-xs sm:mr-4 mr-2 text-blue-700 dark:text-lime-300">Code copied !</div>}
+          {copied && <div className="text-xs sm:block hidden sm:mr-4 mr-2 text-blue-700 dark:text-lime-300">Code copied !</div>}
 
           <button
             title={console ? 'Hide Console Output' : 'Show Console Output'}
@@ -80,6 +92,15 @@ function Settings(props) {
           </button>
 
           <button
+            title={"Settings"}
+            className="m-0 sm:ml-3 ml-1 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            type="button"
+            onClick={onSettingsOpen}
+          >
+            <SettingsIcon theme={theme} className='h-5'/>
+          </button>
+
+          <button
             title={btnTitle}
             className="m-0 sm:ml-3 ml-1 rounded-full p-1  hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
@@ -87,7 +108,9 @@ function Settings(props) {
           >
             <img src={theme === $.DARK ? light : dark} className="dark-icon h-5" />
           </button>
-
+          <Modal open={state.modalOpen}>
+            <SettingsView/>
+          </Modal>
         </div>
   )
 }

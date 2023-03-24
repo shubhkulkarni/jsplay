@@ -13,6 +13,7 @@ import columnsLight from '../assets/columns.svg';
 import rowsDark from '../assets/rowsDark.svg';
 import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
+import useGlobal from '../state';
 
 
 
@@ -26,7 +27,10 @@ const Main = () => {
   const [copied,setCopied] = useState(false);
   const [showSnip,setShowSnip] = useState(true);
   const [showConsole,setShowConsole] = useState(true);
-  useEditor();
+  const [state,{setState}] = useGlobal();
+
+  useEditor(state.language);
+  
   const columnLayout = layout === $.COLUMNS;
 
   const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
@@ -40,8 +44,10 @@ const Main = () => {
     setCopied(false);
   }
 
-
+  
   useEffect(()=>{
+    const lang = storage.get($.LANG);
+    if(lang) setState('language',lang)
     const codeStr = storage.get($.CODE);
     if(codeStr) setCodeString(codeStr);
     const lyt = storage.get($.LAYOUT);
