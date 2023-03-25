@@ -1,4 +1,4 @@
-export const javaAutoSuggestions = monaco => ([
+const suggestions = monaco => ([
     {
       "label": "abstract",
       "kind": monaco?.languages?.CompletionItemKind?.Keyword,
@@ -335,51 +335,60 @@ export const javaAutoSuggestions = monaco => ([
         "documentation": "println",
         "insertText": "println();"
       },
-      {
-        "label": "System.out.println()",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "Print message at new line",
-        "insertText": "System.out.println();"
-      },
-      {
-        "label": "method",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "new non Static Method",
-        "insertText": ["public void methodName(){",
-    "\n","}"].join("\n")
-      },
-      {
-        "label": "staticMethod",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "new Static Method",
-        "insertText": ["public static void methodName(){",
-    "\n","}"].join("\n")
-      },
-      {
-        "label": "classWithMainMethod",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "classWithMainMethod",
-        "insertText": ["public class ClassA {\n",
-        "\tpublic static void main(String[] args){",
-        "\t\t\n",
-        "\t}\n",
-       
-        "}"
-        ].join("\n")
-      },
-      {
-        "label": "classConstructor",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "classConstructor",
-        "insertText": [
-            "public ClassA(){\n\n}"
-        ].join("\n")
-      },
-      {
-        "label": "newInstance",
-        "kind": monaco?.languages?.CompletionItemKind?.Snippet,
-        "documentation": "newInstance",
-        "insertText": `ClassA obj = new ClassA();`
-      },
       
   ])
+
+
+  const snipSuggestions = monaco =>([{
+    "label": "syso",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "Print message at new line",
+    "insertText": "System.out.println();"
+  },
+  {
+    "label": "nonStaticMethod",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "create new non static method",
+    "insertText": ["public void methodName(){",
+"\n","}"].join("\n")
+  },
+  {
+    "label": "staticMethod",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "create new static method",
+    "insertText": ["public static void methodName(){",
+"\n","}"].join("\n")
+  },
+  {
+    "label": "classWithMainMethod",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "create class with main method",
+    "insertText": ["public class ClassA {\n",
+    "\tpublic static void main(String[] args){",
+    "\t\t\n",
+    "\t}\n",
+   
+    "}"
+    ].join("\n")
+  },
+  {
+    "label": "classConstructor",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "create class constructor",
+    "insertText": [
+        "public ClassA(){\n\n}"
+    ].join("\n")
+  },
+  {
+    "label": "newInstance",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "create new object (instance) of a class",
+    "insertText": `ClassA obj = new ClassA();`
+  },
+  ])
+
+  export const javaAutoSuggestions = monaco => ([
+    ...suggestions(monaco),...snipSuggestions(monaco)
+  ])
+
+  export const javaSnippets = snipSuggestions().map(item => ({label:item.label,description: item.documentation}));

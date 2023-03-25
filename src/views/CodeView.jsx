@@ -4,7 +4,8 @@ import useGlobal from '../state';
 export const langMap = {
   'js':'javascript',
   'java':'java',
-  'py':'python'
+  'py':'python',
+  'ts':'typescript'
 }
 const CodeView = (props) => {
   const [state,{setState}] = useGlobal();

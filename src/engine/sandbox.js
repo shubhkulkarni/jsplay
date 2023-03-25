@@ -1,5 +1,5 @@
 export function runInSandbox(iframe,code) {
-
+    
     if (iframe) {
         const iframeWindow = iframe.contentWindow;
         iframeWindow.parent = undefined;

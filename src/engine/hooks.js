@@ -92,7 +92,16 @@ export const useEditor = (lang) => {
             };
           }
         });
-      }else if(lang === $.JAVA){
+      }else if(lang === $.TS){
+        monaco.languages.registerCompletionItemProvider('typescript', {
+          provideCompletionItems: () => {
+            return {
+              suggestions: suggestions(monaco)
+            };
+          }
+        });
+      }
+      else if(lang === $.JAVA){
         monaco.languages.registerCompletionItemProvider('java', {
           provideCompletionItems: () => {
             return {

@@ -14,13 +14,14 @@ import rowsDark from '../assets/rowsDark.svg';
 import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
 import useGlobal from '../state';
+import { starterCode, starterCodeVals } from '../views/langData';
 
 
 
 const storage = new Storage({type: localStorage, async: false});
 
 const Main = () => {
-  const [codeString, setCodeString] = useState('// Start writing your code ex. console.log("Hello World!");');
+  
   const [theme, setTheme] = useState($.DARK);
   const [saved,setSaved] = useState(false);
   const [layout,setLayout] = useState($.COLUMNS);
@@ -29,6 +30,8 @@ const Main = () => {
   const [showConsole,setShowConsole] = useState(true);
   const [state,{setState}] = useGlobal();
 
+  const [codeString, setCodeString] = useState("");
+  
   useEditor(state.language);
   
   const columnLayout = layout === $.COLUMNS;

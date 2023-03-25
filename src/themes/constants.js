@@ -1,7 +1,7 @@
 const $ = Object.freeze({
   LIGHT: 'light',
   DARK: 'dark',
-  CODE:'code',
+  CODE:'_code',
   ROWS:'rows',
   COLUMNS:'columns',
   THEME:'theme',
@@ -10,7 +10,8 @@ const $ = Object.freeze({
   JS:'js',
   JAVA:'java',
   PY:'py',
-  LANG:'lang'
+  LANG:'lang',
+  TS:"ts"
 });
 
 export default $;
