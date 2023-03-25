@@ -9,9 +9,16 @@ export const langMap = {
 }
 const CodeView = (props) => {
   const [state,{setState}] = useGlobal();
+  function handleEditorValidation(markers) {
+    // model markers
+    console.log({markers})
+    setState('marker',String(markers.at(-1).message))
+    setState('markerLine',markers.at(-1).startLineNumber)
+  }
+  console.log(state)
   return (
     <div className={`editor-main h-1/2 w-full ${props.console ? (props.columnLayout ? `sm:h-full sm:w-1/2` :`sm:h-1/2 sm:w-full`) : 'h-full w-full'} `}>
-      <MonacoEditor {...props} language={langMap[state.language]} />
+      <MonacoEditor onValidate={handleEditorValidation} {...props} language={langMap[state.language]} />
     </div>
   );
 };

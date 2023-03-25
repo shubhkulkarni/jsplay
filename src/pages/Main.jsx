@@ -30,7 +30,7 @@ const Main = () => {
   const [showConsole,setShowConsole] = useState(true);
   const [state,{setState}] = useGlobal();
 
-  const [codeString, setCodeString] = useState("");
+  const [codeString, setCodeString] = useState("// Start writing your code");
   
   useEditor(state.language);
   
@@ -99,6 +99,8 @@ const Main = () => {
 },[]);
 
   const onEditorChange = useCallback(val => {
+    setState("marker","")
+    setState("markerLine","")
     setSaved(false);
     setCopied(false);
     setCodeString(val);

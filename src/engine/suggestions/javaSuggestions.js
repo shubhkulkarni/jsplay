@@ -346,6 +346,12 @@ const suggestions = monaco => ([
     "insertText": "System.out.println();"
   },
   {
+    "label": "System.out.println",
+    "kind": monaco?.languages?.CompletionItemKind?.Snippet,
+    "documentation": "Print message at new line",
+    "insertText": "System.out.println();"
+  },
+  {
     "label": "nonStaticMethod",
     "kind": monaco?.languages?.CompletionItemKind?.Snippet,
     "documentation": "create new non static method",

@@ -71,6 +71,9 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
 
         {!isJS && <RunScript theme={theme} code={code}/>}
 
+        {isJS && state.marker && <div className="error flex justify-between items-center mb-2 rounded bg-red-200 p-1 px-2 font-semibold text-red-800 dark:bg-red-700 dark:bg-opacity-50 dark:font-normal dark:text-white">
+            <div className="">{state.marker}</div> <div className="">at line: {state.markerLine}</div>
+        </div>}
 
         {output && (
           <div className="error rounded bg-red-200 p-1 px-2 font-semibold text-red-800 dark:bg-red-700 dark:bg-opacity-50 dark:font-normal dark:text-white">
@@ -105,7 +108,7 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
 
         {!isJS && state.output &&  renderNonJS(state.output)}
 
-        {isJS && !output && !loopErr && (
+        {isJS && !output && !loopErr && !state.marker &&(
           <div className="console-output py-1 font-semibold text-green-600 dark:font-normal dark:text-lime-400">
             {msg.length
               ? renderMsg(msg, theme)
@@ -120,7 +123,7 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
           </div>
         )}
 
-        { snips[state.language].length && showSnip && !loopErr && <div className="mt-4 text-sm ">
+        { snips[state.language].length > 0 && showSnip && !loopErr && <div className="mt-4 text-sm ">
           <div className="dark:text-lime-500 text-lime-600 font-semibold dark:font-normal">{langMapForChip[state.language]} snippet shortcuts to code faster !</div>
           {
             snips[state.language].map(item => {
