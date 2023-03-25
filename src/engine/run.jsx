@@ -9,7 +9,7 @@ import { useState } from 'react';
 const iframe = document.getElementById('sandbox');
 
 export const jsRunner = (code) => {
-  // console.clear();
+  console.clear();
   try {
     return runInSandbox(iframe, code);
   } catch (err) {

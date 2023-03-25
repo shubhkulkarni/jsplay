@@ -11,7 +11,6 @@ const CodeView = (props) => {
   const [state,{setState}] = useGlobal();
   function handleEditorValidation(markers) {
     // model markers
-    console.log({markers})
     setState('marker',String(markers.at(-1).message))
     setState('markerLine',markers.at(-1).startLineNumber)
   }
