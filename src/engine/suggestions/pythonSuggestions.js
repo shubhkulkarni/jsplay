@@ -208,5 +208,11 @@ export const pythonAutoSuggestions = monaco => ([
       "kind": monaco?.languages?.CompletionItemKind?.Keyword,
       "documentation": "not",
       "insertText": "not"
+    },
+    {
+      "label": "print",
+      "kind": monaco?.languages?.CompletionItemKind?.Keyword,
+      "documentation": "print",
+      "insertText": "print()"
     }
   ]);
