@@ -19,7 +19,7 @@ function SelectCard({ name, icon, isSelected,tag,tagUse, ...props }) {
 console.log(icon)
   return (
     <div {...props} className={`mb-2 py-2 px-4 rounded-lg bg-transparent w-full
-    cursor-pointer flex justify-between items-center ${isSelected && 'dark:bg-lime-900 dark:bg-opacity-50 bg-sky-100'}`}>
+    cursor-pointer flex justify-between items-center dark:border ${!isSelected && 'border-transparent'} ${isSelected && 'dark:bg-lime-900 dark:bg-opacity-50 bg-sky-100 dark:border border-lime-700'}`}>
       <div className="flex justify-start items-center">
         <div className="">
           {renderIcon(icon)}

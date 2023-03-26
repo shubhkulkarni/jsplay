@@ -1,27 +1,26 @@
 import React from 'react'
-import $ from '../themes/constants'
-import prettyLight from '../assets/pretty.svg'
-import prettyDark from '../assets/pretty-dark.svg'
-import dark from '../assets/dark.svg';
-import light from '../assets/light.svg';
+
 import { copyContent } from '../engine/copyToClipBoard';
-import copyDark from "../assets/copyDark.svg";
-import copyLight from "../assets/copyLight.svg";
+
 import { useCallback } from 'react';
-import snipDark from '../assets/snipDark.svg';
-import snipLight from '../assets/snipLight.svg'
+
 import HideConsole from './HideConsole';
 import ShowConsole from './ShowConsole';
 import SettingsIcon from './SettingsIcon';
-import { useState } from 'react';
+
 import Modal from './Modal/Modal';
-import SelecteCardList from './SelectCard/SelecteCardList';
+
 import SettingsView from '../views/SettingsView';
 import useGlobal from '../state';
+import SnipIcon from '../assets/Snip';
+import Pretty from '../assets/Pretty';
+import Copy from '../assets/Copy';
+import ThemeIcon from '../assets/ThemeIcon';
+import LayoutsIcon from '../assets/LayoutsIcon';
 
 
 function Settings(props) {
-  const {code,saved,theme,darkLayoutSrc,lightLayoutSrc,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,
+  const {code,saved,theme,layout,btnTitle,toggleTheme,onLayoutChange,onPrettify,copy,setSaved,
     onChangeConsole,onSnipChange,console} = props;
   const [copied,setCopied] = copy;
   const [state,{setState}] = useGlobal();
@@ -61,7 +60,7 @@ function Settings(props) {
             type="button"
             onClick={onSnipChange}
           >
-            <img src={theme === $.DARK ? snipDark : snipLight} className="dark-icon h-5" />
+            <SnipIcon theme={theme} className="dark-icon h-5"/>
           </button>
 
           <button
@@ -70,7 +69,7 @@ function Settings(props) {
             type="button"
             onClick={onLayoutChange}
           >
-            <img src={theme === $.DARK ? darkLayoutSrc : lightLayoutSrc} className="dark-icon h-5" />
+            <LayoutsIcon theme={theme} layout={layout} className="dark-icon h-5"/>
           </button>
 
           <button
@@ -79,7 +78,7 @@ function Settings(props) {
             type="button"
             onClick={onCopyText}
           >
-            <img src={theme === $.DARK ? copyDark : copyLight} className="dark-icon h-5" />
+            <Copy theme={theme} className="dark-icon h-5"/>
           </button>
           
           <button
@@ -88,7 +87,7 @@ function Settings(props) {
             type="button"
             onClick={onPrettify}
           >
-            <img src={theme === $.DARK ? prettyLight : prettyDark} className="dark-icon h-5" />
+            <Pretty theme={theme} className="dark-icon h-5"/>
           </button>
 
           <button
@@ -106,7 +105,7 @@ function Settings(props) {
             type="button"
             onClick={toggleTheme}
           >
-            <img src={theme === $.DARK ? light : dark} className="dark-icon h-5" />
+            <ThemeIcon theme={theme} className="dark-icon h-5"/>
           </button>
           <Modal open={state.modalOpen}>
             <SettingsView/>

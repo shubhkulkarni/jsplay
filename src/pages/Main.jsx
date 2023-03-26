@@ -8,10 +8,6 @@ import {js_beautify} from 'js-beautify';
 import Storage from '../engine/storage';
 import { useEffect } from 'react';
 import _debounce from 'lodash/debounce';
-import rowsLight from '../assets/rows.svg';
-import columnsLight from '../assets/columns.svg';
-import rowsDark from '../assets/rowsDark.svg';
-import columnsDark from '../assets/columnsDark.svg';
 import Settings from '../components/Settings';
 import useGlobal from '../state';
 import { starterCode, starterCodeVals } from '../views/langData';
@@ -30,14 +26,11 @@ const Main = () => {
   const [showConsole,setShowConsole] = useState(true);
   const [state,{setState}] = useGlobal();
 
-  const [codeString, setCodeString] = useState("// Start writing your code");
+  const [codeString, setCodeString] = useState(`// Start writing your code ex. console.log("Hello World!");`)
   
   useEditor(state.language);
   
   const columnLayout = layout === $.COLUMNS;
-
-  const lightLayoutSrc = columnLayout ? rowsLight : columnsLight ;
-  const darkLayoutSrc = columnLayout ? rowsDark : columnsDark ;
 
   const debounceFn = useCallback(_debounce(handleDebounceFn, 3000), []);
 
@@ -130,8 +123,7 @@ const Main = () => {
         </div>
 
         <Settings saved={saved} theme={theme} 
-            darkLayoutSrc={darkLayoutSrc}
-            lightLayoutSrc={lightLayoutSrc}
+            layout={layout}
             btnTitle={btnTitle}
             toggleTheme={toggleTheme}
             onLayoutChange={onLayoutChange}
