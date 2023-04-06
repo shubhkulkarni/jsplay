@@ -108,7 +108,7 @@ const ResultsView = ({ code, theme, columnLayout, showSnip,console }) => {
 
         {!isJS && state.output &&  renderNonJS(state.output)}
 
-        {isJS && !output && !loopErr && !state.marker &&(
+        {isJS && !output && !loopErr &&(
           <div className="console-output py-1 font-semibold text-green-600 dark:font-normal dark:text-lime-400">
             {msg.length
               ? renderMsg(msg, theme)
