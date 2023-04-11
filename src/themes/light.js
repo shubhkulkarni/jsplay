@@ -17,7 +17,7 @@ export const lightThemeData = {
       {
         "foreground": "940260",
         "token": "keyword",
-        fontStyle:'bold'
+        fontStyle:'bold italic',
       },
       {
         "foreground": "000000",

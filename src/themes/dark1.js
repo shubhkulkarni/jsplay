@@ -13,7 +13,7 @@ export const themeData = {
     },
     {
       foreground: 'fc6f09',
-      // fontStyle: 'italic',
+      fontStyle: 'italic',
       token: 'keyword',
     },
     {
